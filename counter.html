@@ -1,0 +1,117 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01//EN" "http://www.w3.org/TR/html4/strict.dtd">
+<html>
+<head>
+  <meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+  <meta http-equiv="Content-Style-Type" content="text/css">
+  <title></title>
+  <meta name="Generator" content="Cocoa HTML Writer">
+  <meta name="CocoaVersion" content="2113.6">
+  <style type="text/css">
+    p.p1 {margin: 0.0px 0.0px 0.0px 0.0px; font: 12.0px Helvetica}
+    p.p2 {margin: 0.0px 0.0px 0.0px 0.0px; font: 12.0px Helvetica; min-height: 14.0px}
+    span.s1 {font: 12.0px 'PingFang SC'}
+    span.s2 {font: 12.0px 'Apple Color Emoji'}
+  </style>
+</head>
+<body>
+<p class="p1">&lt;!DOCTYPE html&gt;</p>
+<p class="p1">&lt;html lang="en"&gt;</p>
+<p class="p1">&lt;head&gt;</p>
+<p class="p1"><span class="Apple-converted-space">    </span>&lt;meta charset="UTF-8"&gt;</p>
+<p class="p1"><span class="Apple-converted-space">    </span>&lt;meta name="viewport" content="width=device-width, initial-scale=1.0"&gt;</p>
+<p class="p1"><span class="Apple-converted-space">    </span>&lt;title&gt;Counter&lt;/title&gt;</p>
+<p class="p1"><span class="Apple-converted-space">    </span>&lt;style&gt;</p>
+<p class="p1"><span class="Apple-converted-space">        </span>body {</p>
+<p class="p1"><span class="Apple-converted-space">            </span>display: flex;</p>
+<p class="p1"><span class="Apple-converted-space">            </span>flex-direction: column;</p>
+<p class="p1"><span class="Apple-converted-space">            </span>align-items: center;</p>
+<p class="p1"><span class="Apple-converted-space">            </span>justify-content: center;</p>
+<p class="p1"><span class="Apple-converted-space">            </span>height: 100vh;</p>
+<p class="p1"><span class="Apple-converted-space">            </span>font-family: Arial, sans-serif;</p>
+<p class="p1"><span class="Apple-converted-space">            </span>margin: 0;</p>
+<p class="p1"><span class="Apple-converted-space">            </span>background-color: #ffe6f0; /* <span class="s1">背景为浅粉色</span> */</p>
+<p class="p1"><span class="Apple-converted-space">        </span>}</p>
+<p class="p1"><span class="Apple-converted-space">        </span>#counter-container {</p>
+<p class="p1"><span class="Apple-converted-space">            </span>display: flex;</p>
+<p class="p1"><span class="Apple-converted-space">            </span>align-items: center;</p>
+<p class="p1"><span class="Apple-converted-space">            </span>font-size: 1em; /* <span class="s1">调整计数器的基础大小</span> */</p>
+<p class="p1"><span class="Apple-converted-space">            </span>color: #fe7aa5; /* <span class="s1">计数器字体颜色为指定粉色</span> */</p>
+<p class="p1"><span class="Apple-converted-space">            </span>position: relative;</p>
+<p class="p1"><span class="Apple-converted-space">        </span>}</p>
+<p class="p1"><span class="Apple-converted-space">        </span>#counter {</p>
+<p class="p1"><span class="Apple-converted-space">            </span>margin: 0 10px; /* <span class="s1">减小左右间距</span> */</p>
+<p class="p1"><span class="Apple-converted-space">        </span>}</p>
+<p class="p1"><span class="Apple-converted-space">        </span>button {</p>
+<p class="p1"><span class="Apple-converted-space">            </span>padding: 3px 10px; /* <span class="s1">缩小按钮的大小</span> */</p>
+<p class="p1"><span class="Apple-converted-space">            </span>font-size: 0.5em; /* <span class="s1">缩小按钮字体大小</span> */</p>
+<p class="p1"><span class="Apple-converted-space">            </span>cursor: pointer;</p>
+<p class="p1"><span class="Apple-converted-space">            </span>color: white;</p>
+<p class="p1"><span class="Apple-converted-space">            </span>background-color: #fe7aa5; /* <span class="s1">按钮颜色为指定粉色</span> */</p>
+<p class="p1"><span class="Apple-converted-space">            </span>border: none;</p>
+<p class="p1"><span class="Apple-converted-space">            </span>border-radius: 5px;</p>
+<p class="p1"><span class="Apple-converted-space">        </span>}</p>
+<p class="p1"><span class="Apple-converted-space">        </span>button:hover {</p>
+<p class="p1"><span class="Apple-converted-space">            </span>background-color: #ff99cc; /* <span class="s1">按钮的悬停效果</span> */</p>
+<p class="p1"><span class="Apple-converted-space">        </span>}</p>
+<p class="p1"><span class="Apple-converted-space">        </span>/* <span class="s1">动画图标样式</span> */</p>
+<p class="p1"><span class="Apple-converted-space">        </span>.animation-icon {</p>
+<p class="p1"><span class="Apple-converted-space">            </span>position: absolute;</p>
+<p class="p1"><span class="Apple-converted-space">            </span>top: -30px; /* <span class="s1">根据缩小的比例调整位置</span> */</p>
+<p class="p1"><span class="Apple-converted-space">            </span>left: 50%;</p>
+<p class="p1"><span class="Apple-converted-space">            </span>transform: translateX(-50%);</p>
+<p class="p1"><span class="Apple-converted-space">            </span>font-size: 1em; /* <span class="s1">缩小图标尺寸</span> */</p>
+<p class="p1"><span class="Apple-converted-space">            </span>opacity: 1;</p>
+<p class="p1"><span class="Apple-converted-space">            </span>animation: fadeOut 1s ease forwards;</p>
+<p class="p1"><span class="Apple-converted-space">        </span>}</p>
+<p class="p1"><span class="Apple-converted-space">        </span>/* <span class="s1">动画效果</span> */</p>
+<p class="p1"><span class="Apple-converted-space">        </span>@keyframes fadeOut {</p>
+<p class="p1"><span class="Apple-converted-space">            </span>0% { opacity: 1; }</p>
+<p class="p1"><span class="Apple-converted-space">            </span>100% { opacity: 0; transform: translateY(-10px); }</p>
+<p class="p1"><span class="Apple-converted-space">        </span>}</p>
+<p class="p1"><span class="Apple-converted-space">    </span>&lt;/style&gt;</p>
+<p class="p1">&lt;/head&gt;</p>
+<p class="p1">&lt;body&gt;</p>
+<p class="p1"><span class="Apple-converted-space">    </span>&lt;div id="counter-container"&gt;</p>
+<p class="p1"><span class="Apple-converted-space">        </span>&lt;button onclick="decrement()"&gt;-&lt;/button&gt;</p>
+<p class="p1"><span class="Apple-converted-space">        </span>&lt;div id="counter"&gt;0&lt;/div&gt;</p>
+<p class="p1"><span class="Apple-converted-space">        </span>&lt;button onclick="increment()"&gt;+&lt;/button&gt;</p>
+<p class="p1"><span class="Apple-converted-space">    </span>&lt;/div&gt;</p>
+<p class="p2"><br></p>
+<p class="p1"><span class="Apple-converted-space">    </span>&lt;script&gt;</p>
+<p class="p1"><span class="Apple-converted-space">        </span>// Load counter value from local storage or start at 0</p>
+<p class="p1"><span class="Apple-converted-space">        </span>let counterValue = localStorage.getItem('counterValue') || 0;</p>
+<p class="p1"><span class="Apple-converted-space">        </span>document.getElementById('counter').innerText = counterValue;</p>
+<p class="p2"><br></p>
+<p class="p1"><span class="Apple-converted-space">        </span>function increment() {</p>
+<p class="p1"><span class="Apple-converted-space">            </span>counterValue++;</p>
+<p class="p1"><span class="Apple-converted-space">            </span>updateCounter();</p>
+<p class="p1"><span class="Apple-converted-space">            </span>showAnimation("<span class="s2">💗</span>");</p>
+<p class="p1"><span class="Apple-converted-space">        </span>}</p>
+<p class="p2"><br></p>
+<p class="p1"><span class="Apple-converted-space">        </span>function decrement() {</p>
+<p class="p1"><span class="Apple-converted-space">            </span>counterValue--;</p>
+<p class="p1"><span class="Apple-converted-space">            </span>updateCounter();</p>
+<p class="p1"><span class="Apple-converted-space">            </span>showAnimation("<span class="s2">💔</span>");</p>
+<p class="p1"><span class="Apple-converted-space">        </span>}</p>
+<p class="p2"><br></p>
+<p class="p1"><span class="Apple-converted-space">        </span>function updateCounter() {</p>
+<p class="p1"><span class="Apple-converted-space">            </span>document.getElementById('counter').innerText = counterValue;</p>
+<p class="p1"><span class="Apple-converted-space">            </span>localStorage.setItem('counterValue', counterValue); // Save to local storage</p>
+<p class="p1"><span class="Apple-converted-space">        </span>}</p>
+<p class="p2"><br></p>
+<p class="p1"><span class="Apple-converted-space">        </span>function showAnimation(symbol) {</p>
+<p class="p1"><span class="Apple-converted-space">            </span>const animationElement = document.createElement("div");</p>
+<p class="p1"><span class="Apple-converted-space">            </span>animationElement.className = "animation-icon";</p>
+<p class="p1"><span class="Apple-converted-space">            </span>animationElement.innerText = symbol;</p>
+<p class="p1"><span class="Apple-converted-space">            </span>document.getElementById("counter-container").appendChild(animationElement);</p>
+<p class="p2"><br></p>
+<p class="p1"><span class="Apple-converted-space">            </span>// 1<span class="s1">秒后删除动画元素</span></p>
+<p class="p1"><span class="Apple-converted-space">            </span>setTimeout(() =&gt; {</p>
+<p class="p1"><span class="Apple-converted-space">                </span>animationElement.remove();</p>
+<p class="p1"><span class="Apple-converted-space">            </span>}, 1000);</p>
+<p class="p1"><span class="Apple-converted-space">        </span>}</p>
+<p class="p1"><span class="Apple-converted-space">    </span>&lt;/script&gt;</p>
+<p class="p1">&lt;/body&gt;</p>
+<p class="p1">&lt;/html&gt;</p>
+</body>
+</html>
