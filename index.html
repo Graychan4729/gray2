@@ -1,0 +1,158 @@
+{\rtf1\ansi\ansicpg936\cocoartf2639
+\cocoatextscaling0\cocoaplatform0{\fonttbl\f0\fswiss\fcharset0 Helvetica;\f1\fnil\fcharset134 PingFangSC-Regular;\f2\fnil\fcharset0 AppleColorEmoji;
+}
+{\colortbl;\red255\green255\blue255;}
+{\*\expandedcolortbl;;}
+\paperw11900\paperh16840\margl1440\margr1440\vieww11520\viewh8400\viewkind0
+\pard\tx566\tx1133\tx1700\tx2267\tx2834\tx3401\tx3968\tx4535\tx5102\tx5669\tx6236\tx6803\pardirnatural\partightenfactor0
+
+\f0\fs24 \cf0 <!DOCTYPE html>\
+<html lang="en">\
+<head>\
+    <meta charset="UTF-8">\
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">\
+    <title>Counter</title>\
+    <style>\
+        body \{\
+            display: flex;\
+            flex-direction: column;\
+            align-items: center;\
+            justify-content: center;\
+            height: 100vh;\
+            font-family: Arial, sans-serif;\
+            margin: 0;\
+            background-color: #ffe6f0;\
+        \}\
+        #counter-container \{\
+            display: flex;\
+            align-items: center;\
+            font-size: 1em;\
+            color: #fe7aa5;\
+            position: relative;\
+        \}\
+        #counter \{\
+            margin: 0 10px;\
+        \}\
+        button \{\
+            padding: 3px 10px;\
+            font-size: 0.5em;\
+            cursor: pointer;\
+            color: white;\
+            background-color: #fe7aa5;\
+            border: none;\
+            border-radius: 5px;\
+        \}\
+        button:hover \{\
+            background-color: #ff99cc;\
+        \}\
+        .separator \{\
+            font-size: 1em;\
+            color: transparent;\
+            margin: 0 5px;\
+        \}\
+        .animation-icon \{\
+            position: absolute;\
+            top: -30px;\
+            left: 50%;\
+            transform: translateX(-50%);\
+            font-size: 1em;\
+            opacity: 1;\
+            animation: fadeOut 1s ease forwards;\
+        \}\
+        @keyframes fadeOut \{\
+            0% \{ opacity: 1; \}\
+            100% \{ opacity: 0; transform: translateY(-10px); \}\
+        \}\
+    </style>\
+</head>\
+<body>\
+    <div id="counter-container">\
+        <span class="separator">\'97\'97\'97</span>\
+        <button onclick="decrement()">-</button>\
+        <div id="counter">0</div>\
+        <button onclick="increment()">+</button>\
+        <span class="separator">\'97\'97\'97</span>\
+    </div>\
+\
+    <script>\
+        const url = "/.netlify/functions/fetchCounter"; // 
+\f1 \'ca\'b9\'d3\'c3
+\f0  Netlify Functions 
+\f1 \'b4\'fa\'c0\'ed\'c2\'b7\'be\'b6
+\f0 \
+\
+        async function fetchCounter() \{\
+            try \{\
+                const response = await fetch(url); // 
+\f1 \'d6\'b1\'bd\'d3\'ca\'b9\'d3\'c3
+\f0  Netlify Functions 
+\f1 \'c2\'b7\'be\'b6
+\f0 \
+                const data = await response.json();\
+                if (data.fields && data.fields.count !== undefined) \{\
+                    counterValue = data.fields.count;\
+                    document.getElementById('counter').innerText = counterValue;\
+                \}\
+            \} catch (error) \{\
+                console.error("Error fetching counter:", error);\
+            \}\
+        \}\
+\
+        async function updateCounterInAirtable() \{\
+            try \{\
+                await fetch(url, \{\
+                    method: "PATCH",\
+                    headers: \{\
+                        "Content-Type": "application/json"\
+                    \},\
+                    body: JSON.stringify(\{\
+                        count: counterValue // 
+\f1 \'b7\'a2\'cb\'cd\'d0\'c2\'b5\'c4\'bc\'c6\'ca\'fd\'d6\'b5
+\f0 \
+                    \})\
+                \});\
+            \} catch (error) \{\
+                console.error("Error updating counter in Airtable:", error);\
+            \}\
+        \}\
+\
+        let counterValue = 0;\
+\
+        function increment() \{\
+            counterValue++;\
+            updateCounter();\
+            showAnimation("
+\f2 \uc0\u55357 \u56471 
+\f0 ");\
+        \}\
+\
+        function decrement() \{\
+            counterValue--;\
+            updateCounter();\
+            showAnimation("
+\f2 \uc0\u55357 \u56468 
+\f0 ");\
+        \}\
+\
+        function updateCounter() \{\
+            document.getElementById('counter').innerText = counterValue;\
+            updateCounterInAirtable(); // Update Airtable with the new value\
+        \}\
+\
+        function showAnimation(symbol) \{\
+            const animationElement = document.createElement("div");\
+            animationElement.className = "animation-icon";\
+            animationElement.innerText = symbol;\
+            document.getElementById("counter-container").appendChild(animationElement);\
+\
+            setTimeout(() => \{\
+                animationElement.remove();\
+            \}, 1000);\
+        \}\
+\
+        // Initialize the counter by fetching the initial value from Airtable\
+        fetchCounter();\
+    </script>\
+</body>\
+</html>\
+}
